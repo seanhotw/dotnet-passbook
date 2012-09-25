@@ -18,6 +18,7 @@ namespace Passbook.Generator
             SecondaryFields = new List<Field>();
             AuxiliaryFields = new List<Field>();
             BackFields = new List<Field>();
+            LocationFields = new List<LocationField>();
         }
 
         public string Identifier { get; set; }
@@ -44,6 +45,7 @@ namespace Passbook.Generator
         public List<Field> AuxiliaryFields { get; private set; }
         public List<Field> BackFields { get; private set; }
         public BarCode Barcode { get; private set; }
+        public List<LocationField> LocationFields { get; private set; }
 
         public void AddHeaderField(Field field)
         {
@@ -77,6 +79,11 @@ namespace Passbook.Generator
             Barcode.Message = message;
             Barcode.Encoding = encoding;
             Barcode.AlternateText = altText;
+        }
+
+        public void AddLocation(LocationField field)
+        {
+            this.LocationFields.Add(field);
         }
 
         public PassStyle Style { get; set; }
@@ -119,9 +126,52 @@ namespace Passbook.Generator
             CloseStyleSpecificKey(writer);
 
             WriteBarcode(writer, this);
+            WriteLocations(writer, this);
             WriteUrls(writer, this);
 
             writer.WriteEndObject();
+        }
+
+        private void WriteLocations(JsonWriter writer, PassGeneratorRequest passGeneratorRequest)
+        {
+            if (LocationFields.Count > 0)
+            {
+                writer.WritePropertyName("locations");
+                writer.WriteStartArray();
+
+                foreach (var field in LocationFields)
+                {
+                  if (field.Latitude.HasValue)
+                  {
+                    writer.WriteStartObject();
+                    writer.WritePropertyName("latitude");
+                    writer.WriteValue(field.Latitude);
+                  }
+
+                  if (field.Longitude.HasValue)
+                  {
+                    writer.WriteStartObject();
+                    writer.WritePropertyName("latitude");
+                    writer.WriteValue(field.Latitude);
+                  }
+
+                  if (field.Altitude.HasValue)
+                  {
+                    writer.WriteStartObject();
+                    writer.WritePropertyName("altitude");
+                    writer.WriteValue(field.Latitude);
+                  }
+
+                  if (field.ReleventText != null)
+                  {
+                    writer.WriteStartObject();
+                    writer.WritePropertyName("releventText");
+                    writer.WriteValue(field.Latitude);
+                  }
+                }
+
+                writer.WriteEndArray();
+            }
         }
 
         private void WriteUrls(JsonWriter writer, PassGeneratorRequest request)

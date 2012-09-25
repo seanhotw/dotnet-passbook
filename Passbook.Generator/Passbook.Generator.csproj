@@ -53,6 +53,7 @@
     <Compile Include="Fields\BarcodeType.cs" />
     <Compile Include="Fields\DateField.cs" />
     <Compile Include="Fields\Field.cs" />
+    <Compile Include="Fields\LocationField.cs" />
     <Compile Include="Fields\NumberField.cs" />
     <Compile Include="Fields\FieldNumberStyle.cs" />
     <Compile Include="Fields\StandardField.cs" />
