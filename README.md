@@ -68,6 +68,10 @@ You can now provide more pass specific information. For a boarding pass the styl
     request.AddAuxiliaryField(new StandardField("passenger-name", "Passenger", "Thomas Anderson"));
 
  	request.TransitType = TransitType.PKTransitTypeAir;
+
+Adding a location is accomplished using the AddLocation
+
+	request.AddLocation(new LocationField(51.121212121,0.0123484835,"Piccadilly Circus");
 	
 Finally, you can add a BarCode.
 
