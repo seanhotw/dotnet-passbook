@@ -40,7 +40,9 @@ namespace Passbook.Sample.Web.Controllers
 
             request.EventName = "Jeff Wayne's War of the Worlds";
             request.SeatingSection = 10;
-            request.DoorsOpen = new DateTime(2012, 11, 03, 11, 30, 00);
+            request.DoorsOpen = new DateTime(2012, 10, 08, 11, 30, 00);
+
+            request.AddLocation(new LocationField() { Latitude = 51.488699, Longitude = -0.020213, ReleventText = "You're at Stratford" });
 
             request.AddBarCode("01927847623423234234", BarcodeType.PKBarcodeFormatPDF417, "UTF-8", "01927847623423234234");
 

@@ -141,33 +141,31 @@ namespace Passbook.Generator
 
                 foreach (var field in LocationFields)
                 {
-                  if (field.Latitude.HasValue)
-                  {
                     writer.WriteStartObject();
-                    writer.WritePropertyName("latitude");
-                    writer.WriteValue(field.Latitude);
-                  }
+                    if (field.Latitude.HasValue)
+                    {
+                        writer.WritePropertyName("latitude");
+                        writer.WriteValue(field.Latitude);
+                    }
 
-                  if (field.Longitude.HasValue)
-                  {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("latitude");
-                    writer.WriteValue(field.Latitude);
-                  }
+                    if (field.Longitude.HasValue)
+                    {
+                        writer.WritePropertyName("longitude");
+                        writer.WriteValue(field.Longitude);
+                    }
 
-                  if (field.Altitude.HasValue)
-                  {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("altitude");
-                    writer.WriteValue(field.Latitude);
-                  }
+                    if (field.Altitude.HasValue)
+                    {
+                        writer.WritePropertyName("altitude");
+                        writer.WriteValue(field.Latitude);
+                    }
 
-                  if (field.ReleventText != null)
-                  {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("releventText");
-                    writer.WriteValue(field.Latitude);
-                  }
+                    if (field.ReleventText != null)
+                    {
+                        writer.WritePropertyName("releventText");
+                        writer.WriteValue(field.Latitude);
+                    }
+                    writer.WriteEndObject();
                 }
 
                 writer.WriteEndArray();
