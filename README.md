@@ -1,8 +1,14 @@
 #dotnet-passbook
-A .Net Library for generating Passbook packages for iOS 6
+
+A .Net Library for generating Passbook packages for iOS 6 and (soon) iOS7
 
 ##Why
-This library powers the Pass generation used by [http://www.passverse.com](http://www.passverse.com). It allows you to generate, sign and zip Passbook files for use with iOS 6's Passbook. If you don't want to build and manage Passes yourself, my PassVerse platform offers developers like yourself, a powerful API for generating and updating passes. It manages the registration and update process for you, allowing you to focus on your own application. Sign up for free at [http://www.passverse.com](http://www.passverse.com).
+
+Creating passes for Apple's Passbook is pretty simple, but requires the use of PKI for signing manifest files, which isn't so simple! During the course of building the [PassVerse](http://www.passverse.com), I created a library that performs all the steps in C#. I decided to open source this library to other .Net developers. It allows you to generate, sign and zip Passbook files for use with Apple's Passbook (Available in iOS 6 and iOS 7).
+
+## PassVerse Management System
+
+The [PassVerse](http://www.passverse.com) management system handles all aspects of Passbook for you, including pass creation, pass registration and the sending of updates. If you want to add Passbook support to your application, PassVerse offers a API that your application can invoke the generate and update passes. It's free to download and use and takes a few minutes to set-up. [Download it now from PassVerse.com ](http://www.passverse.com/downloads).
 
 ## Requirements
 
@@ -104,7 +110,9 @@ To be able to update your pass, you must provide it with a callback. When genera
 
 There are several methods that the Pass will invoke when it's installed and updated. To see a reference implementation of this, look at the PassRegistrationController class in the Passbook.Sample.Web project.
 
-The method that is of most interest in the beginning is the Post method as this actually captures the PushToken for the passes. The UpdateController has a very simple mechanism for sending an update. At present, the device ID is hard-coded, but this should provide a working reference
+The method that is of most interest in the beginning is the Post method as this actually captures the PushToken for the passes. The UpdateController has a very simple mechanism for sending an update. At present, the device ID is hard-coded, but this should provide a working reference.
+
+If you need a complete implementation of the WebService, do take a look at my [PassVerse Platform](http://www.passverse.com) as it contains everything you need.
 
 ## Sample Web Application
 
@@ -128,7 +136,7 @@ The project also includes some dummy requests, so illustrate how you can create 
 /Pass/EventTicket will generate an event based Pass (not fully functional).  
 /Pass/BoardingPass will generate simple baording card.
 
-These passes are functional and can be saved Passbook.
+These passes are functional and can be saved in iOS Passbook.
 
 ##NuGet
 
@@ -139,12 +147,14 @@ Dotnet-passbook is also available to  download from NuGet.
 
 ##iOS 7
 
-I haven't gotten around to adding the new iOS 7 features, but I'll start that on a new branch soon.
+I've started adding some of the new iOS 7 specific fields on the branch iOS 7. Please send me any feedback you have if you find things don't work as expected!
 
 ##Contribute
+
 All pull requests are welcomed! If you come across an issue you cannot fix, please raise an issue or drop me an email at tomas@tomasmcguinness.com or follow me on twitter @tomasmcguinness
 
 ##Progress
+
 You can request features and see what work is being done by checking out the dotnet-passbook Trello board over at [https://trello.com/board/dotnet-passbook/500b31ef655e242e590fda62](https://trello.com/board/dotnet-passbook/500b31ef655e242e590fda62)
 
 ##License

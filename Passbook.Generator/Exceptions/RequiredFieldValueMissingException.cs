@@ -9,6 +9,16 @@ namespace Passbook.Generator.Exceptions
     [Serializable]
     public class RequiredFieldValueMissingException : Exception
     {
-        public RequiredFieldValueMissingException(string fieldName) : base("Missing key value. Every Field must have a key specified.") { }
+        private string key;
+
+        public RequiredFieldValueMissingException(string fieldName) : base("Missing value for field with key '" + fieldName + "'. Every field must have a value specified.") { }
+
+        public override string Message
+        {
+            get
+            {
+                return string.Format("Missing value for field [key: '{0}']. Every field must have a value specified.", key);
+            }
+        }
     }
 }
